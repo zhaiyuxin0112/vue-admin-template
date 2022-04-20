@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2022-04-20 09:06:12
- * @LastEditTime: 2022-04-20 15:26:19
+ * @LastEditTime: 2022-04-20 23:04:52
  * @LastEditors: Please set LastEditors
  * @Description: 系统配置
  * @FilePath: \文档\项目\家政服务预约平台\vue-admin-template\src\views\baseConfig\index.vue
