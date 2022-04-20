@@ -51,7 +51,7 @@ export const constantRoutes = [
       path: 'dashboard',
       name: 'Dashboard',
       component: () => import('@/views/dashboard/index'),
-      meta: { title: 'Dashboard', icon: 'dashboard' }
+      meta: { title: 'Dashboard', icon: '图标库' }
     }]
   },
 
@@ -76,7 +76,42 @@ export const constantRoutes = [
       }
     ]
   },
+//二级路由 审核大厅
+  {
+    path: '/hall',
+    component: Layout,
+    redirect: '/hall/account',
+    name: 'Hall',
+    meta: { title: '审核大厅', icon: '部门管理' },
+    children: [
+      {
+        path: 'certification',
+        name: 'Certification',
+        component: () => import('@/views/hall/certification.vue'),
+        meta: { title: '实名认证', icon: 'tree' }
+      },
+      {
+        path: 'account',
+        name: 'Account',
+        component: () => import('@/views/hall/account.vue'),
+        meta: { title: '账户变更', icon: '用户管理' }
+      },
+      {
+        path: 'comment',
+        name: 'Comment',
+        component: () => import('@/views/hall/comment.vue'),
+        meta: { title: '评论咨询', icon: '角色管理' }
+      },
+    ]
 
+  //     {
+  //       path: 'admin',
+  //       name: 'Admin',
+  //       component: () => import('@/views/hall/admin.vue'),
+  //       meta: { title: '订单评论', icon: 'tree' }
+  //     }
+  //   ]
+  },
   {
     path: '/form',
     component: Layout,
@@ -85,12 +120,130 @@ export const constantRoutes = [
         path: 'index',
         name: 'Form',
         component: () => import('@/views/form/index'),
-        meta: { title: '客房管理', icon: 'form' }
+        meta: { title: '客房服务管理', icon: '菜单管理' }
       }
     ]
   },
+//栏目管理 一级路由
+{
+  path: '/Column',
+  component: Layout,
+  children: [
+    {
+      path: 'index',
+      name: 'Column',
+      component: () => import('@/views/column/index.vue'),
+      meta: { title: '栏目管理', icon: '组件管理' }
+    }
+  ]
+},
+//系统配置 一级路由
+{
+  path: '/baseConfig',
+  component: Layout,
+  children: [
+    {
+      path: 'index',
+      name: 'BaseConfig',
+      component: () => import('@/views/baseConfig/index.vue'),
+      meta: { title: '系统配置', icon: '组件管理' }
+    }
+  ]
+},
+//二级路由
+{
+  path: '/manager',
+  component: Layout,
+  redirect: '/manager/custom',
+  name: 'Manager',
+  meta: { title: '人员管理', icon: '部门管理' },
+  children: [
+    {
+      path: 'custom',
+      name: 'Custom',
+      component: () => import('@/views/manager/custom.vue'),
+      meta: { title: '顾客管理', icon: '用户管理' }
+    },
+    {
+      path: 'employee',
+      name: 'Employee',
+      component: () => import('@/views/manager/employee.vue'),
+      meta: { title: '员工管理', icon: '角色管理' }
+    },
+    {
+      path: 'admin',
+      name: 'Admin',
+      component: () => import('@/views/manager/admin.vue'),
+      meta: { title: '管理员', icon: 'tree' }
+    }
+  ]
+},
+//二级路由
+{
+  path: '/cargory',
+  component: Layout,
+  redirect: '/cargory/cargoryList',
+  name: 'Cargory',
+  meta: { title: '网站咨询', icon: '部门管理' },
+  children: [
+    {
+      path: 'cargoryList',
+      name: 'CargoryList',
+      component: () => import('@/views/cargory/cargoryList.vue'),
+      meta: { title: '网站分类', icon: '用户管理' }
+    },
+    {
+      path: 'cargoryFor',
+      name: 'CargoryFor',
+      component: () => import('@/views/cargory/cargoryFor.vue'),
+      meta: { title: '网站信息', icon: '角色管理' }
+    },
+   
+  ]
+},
+//文章详情页面
+{
+  path: '/toPubDetail',
+  component: Layout,
+  children: [
+    {
+      path: 'index',
+      name: 'Category',
+      component: () => import('@/views/cargory/toPubDetail.vue'),
+      //隐藏路由
+      hidden:true
+    }
+  ]
+},
+//订单管理
+{
+  path: '/Order',
+  component: Layout,
+  children: [
+    {
+      path: 'index',
+      name: 'Order',
+      component: () => import('@/views/order/index1.vue'),
+      meta: { title: '订单管理', icon: '组件管理' }
+    }
+  ]
+},
+//订单详情页面
+{
+  path: '/toDetails',
+  component: Layout,
+  children: [
+    {
+      path: 'index',
+      name: 'Order',
+      component: () => import('@/views/order/toDetails.vue'),
+      //隐藏路由
+      hidden:true
+    }
+  ]
+},
 
-  {
+{
     path: '/nested',
     component: Layout,
     redirect: '/nested/menu1',

@@ -1,7 +1,16 @@
+/*
+ * @Author: your name
+ * @Date: 2022-04-02 00:33:19
+ * @LastEditTime: 2022-04-11 11:38:01
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: \文档\项目\家政服务预约平台\vue-admin-template\src\utils\request.js
+ */
 import axios from 'axios'
 import { MessageBox, Message } from 'element-ui'
 import store from '@/store'
 import { getToken } from '@/utils/auth'
+import qs from 'querystring'
 
 // create an axios instance
 const service = axios.create({
@@ -19,7 +28,7 @@ service.interceptors.request.use(
       // let each request carry token
       // ['X-Token'] is a custom headers key
       // please modify it according to the actual situation
-      config.headers['X-Token'] = getToken()
+      config.headers['Authorization'] = getToken()
     }
     return config
   },
@@ -46,7 +55,7 @@ service.interceptors.response.use(
     const res = response.data
 
     // if the custom code is not 20000, it is judged as an error.
-    if (res.code !== 20000) {
+    if (res.status !== 200) {
       Message({
         message: res.message || 'Error',
         type: 'error',
@@ -81,5 +90,16 @@ service.interceptors.response.use(
     return Promise.reject(error)
   }
 )
-
+//自定义get
+export function get(url,params){
+  return service.get(url,{params})
+}
+//自定义post
+export function post(url,data){
+  return service.post(url,qs.stringify(data))
+}
+//自定义postJSON
+export function postJSON(url,data){
+  return service.post(url,data)
+}
 export default service
